@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mr. Statistical Consultancy | Professional Thesis Support</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: #f8fafc;
+            scroll-behavior: smooth;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        .highlight-card {
+            border: 2px solid #3b82f6;
+            transform: scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.25);
+            z-index: 20;
+        }
+        .service-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .logo-img { height: 48px; width: auto; object-fit: contain; }
+        .hero-logo { height: 140px; width: auto; margin-bottom: 2rem; display: inline-block; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1)); }
+        .footer-logo { height: 60px; width: auto; margin-bottom: 1rem; }
+        
+        .logo-placeholder {
+            background: #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 1rem;
+            border: 2px dashed #cbd5e1;
+            color: #64748b;
+            font-weight: bold;
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #1e293b, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="text-slate-700">
+
+    <!-- Navigation -->
+    <nav class="bg-white/80 backdrop-blur-md border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <div id="nav-logo-container">
+                    <div class="logo-img logo-placeholder w-12 h-12">LOGO</div>
+                </div>
+                <div class="hidden sm:block font-bold text-xl text-slate-800 tracking-tight">
+                    Mr. Statistical <span class="text-blue-600">Consultancy</span>
+                </div>
+            </div>
+            <div class="hidden md:flex space-x-8 text-sm font-semibold text-slate-600 items-center">
+                <a href="#packages" class="hover:text-blue-600 transition">Packages</a>
+                <a href="#comparison" class="hover:text-blue-600 transition">Quality</a>
+                <a href="#calculator" class="hover:text-blue-600 transition">Estimator</a>
+                <a href="tel:+918825455342" class="px-6 py-2.5 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition shadow-lg shadow-blue-200">8825455342</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="bg-gradient-to-br from-slate-50 via-blue-50/30 to-white py-16 md:py-28 border-b border-slate-100">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            
+            <!-- Management Controls (For user to setup logo) -->
+            <div id="upload-zone" class="mb-12 p-6 bg-white border border-blue-100 rounded-[2rem] inline-block shadow-xl shadow-blue-900/5">
+                <p class="text-[10px] font-black text-blue-500 uppercase mb-3 tracking-[0.2em]">Brand Identity Setup</p>
+                <input type="file" id="logo-input" accept="image/*" class="text-xs text-slate-500 file:mr-4 file:py-2 file:px-6 file:rounded-full file:border-0 file:text-xs file:font-bold file:bg-blue-600 file:text-white hover:file:bg-blue-700 cursor-pointer">
+            </div>
+
+            <div class="block">
+                <div id="hero-logo-container">
+                    <div class="hero-logo logo-placeholder w-32 h-32 mx-auto mb-8">LOGO</div>
+                </div>
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl font-black text-slate-900 mb-6 tracking-tight leading-[1.1]">
+                Mr. Statistical <br><span class="gradient-text">Consultancy</span>
+            </h1>
+            <h2 class="text-xl md:text-2xl font-medium text-slate-500 mb-10">Precision Statistical Support for Medical Professionals</h2>
+            
+            <div class="flex flex-wrap justify-center gap-4 mb-16">
+                <span class="px-4 py-2 bg-white border border-slate-200 rounded-full text-xs font-bold text-slate-600 shadow-sm">✓ MD/MS Thesis</span>
+                <span class="px-4 py-2 bg-white border border-slate-200 rounded-full text-xs font-bold text-slate-600 shadow-sm">✓ PhD Support</span>
+                <span class="px-4 py-2 bg-white border border-slate-200 rounded-full text-xs font-bold text-slate-600 shadow-sm">✓ Journal Publication</span>
+            </div>
+
+            <!-- Role Selector -->
+            <div class="bg-white p-3 rounded-[2.5rem] shadow-2xl shadow-blue-900/10 border border-slate-100 mx-auto max-w-3xl overflow-hidden">
+                <div class="p-6">
+                    <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] mb-8 text-center">Identify Your Research Goal</p>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <button onclick="selectRole('pg')" id="btn-pg" class="role-btn p-5 rounded-2xl border border-slate-100 hover:border-blue-300 transition-all text-sm font-bold bg-slate-50/50">PG Student</button>
+                        <button onclick="selectRole('phd')" id="btn-phd" class="role-btn p-5 rounded-2xl border border-slate-100 hover:border-blue-300 transition-all text-sm font-bold bg-slate-50/50">PhD Scholar</button>
+                        <button onclick="selectRole('author')" id="btn-author" class="role-btn p-5 rounded-2xl border border-slate-100 hover:border-blue-300 transition-all text-sm font-bold bg-slate-50/50">Journal Author</button>
+                        <button onclick="selectRole('basic')" id="btn-basic" class="role-btn p-5 rounded-2xl border border-slate-100 hover:border-blue-300 transition-all text-sm font-bold bg-slate-50/50">Minor Project</button>
+                    </div>
+                </div>
+                <div id="recommendation-text" class="text-blue-700 bg-blue-50/50 p-6 text-sm hidden border-t border-blue-100 text-center font-medium italic"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Packages Section -->
+    <section id="packages" class="py-32 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-20">
+                <h3 class="text-4xl font-black text-slate-900 mb-4 tracking-tight">Our Service Tiers</h3>
+                <div class="h-1.5 w-20 bg-blue-600 mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="grid lg:grid-cols-3 gap-10">
+                <!-- Basic -->
+                <div id="card-basic" class="service-card bg-slate-50 rounded-[3rem] p-10 border border-slate-200 flex flex-col">
+                    <div class="mb-8">
+                        <span class="bg-emerald-100 text-emerald-700 px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest">Minor Research</span>
+                    </div>
+                    <div class="mb-8">
+                        <h3 class="text-3xl font-black text-slate-900 mb-2">₹3,000 – ₹4k</h3>
+                        <p class="text-sm text-slate-500 font-medium">Fundamental Analysis Only</p>
+                    </div>
+                    <ul class="space-y-5 mb-12 flex-1 text-sm font-medium text-slate-600">
+                        <li class="flex items-start gap-4"><span class="text-emerald-500 text-xl leading-none">✓</span> <span>Descriptive Statistics (Mean, SD, %)</span></li>
+                        <li class="flex items-start gap-4"><span class="text-emerald-500 text-xl leading-none">✓</span> <span>Basic Inferential (Chi-sq, T-test)</span></li>
+                        <li class="flex items-start gap-4"><span class="text-emerald-500 text-xl leading-none">✓</span> <span>Clean Data Output Files</span></li>
+                        <li class="flex items-start gap-4"><span class="text-emerald-500 text-xl leading-none">✓</span> <span>Standard Formatted Tables</span></li>
+                    </ul>
+                    <a href="https://wa.me/918825455342" class="w-full py-5 text-center rounded-2xl bg-white text-slate-900 font-bold hover:bg-slate-100 transition-all border border-slate-300 shadow-sm">WhatsApp Inquiry</a>
+                </div>
+
+                <!-- Standard -->
+                <div id="card-standard" class="service-card bg-white rounded-[3rem] p-10 shadow-2xl border-2 border-blue-500 flex flex-col relative lg:scale-105 z-10">
+                    <div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-blue-600 text-white px-8 py-2.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-xl">Thesis Special</div>
+                    <div class="mb-8 mt-4">
+                        <span class="bg-blue-100 text-blue-700 px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest">Dissertation Pro</span>
+                    </div>
+                    <div class="mb-8">
+                        <h3 class="text-4xl font-black text-slate-900 mb-2">₹8,000 – ₹15k</h3>
+                        <p class="text-sm text-blue-600 font-bold">Comprehensive Research Support</p>
+                    </div>
+                    <ul class="space-y-5 mb-12 flex-1 text-sm font-medium text-slate-700">
+                        <li class="flex items-start gap-4 font-bold text-blue-600"><span class="text-blue-600 text-xl leading-none">★</span> <span>Everything in Basic Tier</span></li>
+                        <li class="flex items-start gap-4"><span class="text-blue-500 text-xl leading-none">✓</span> <span>Data Cleaning & Outlier Removal</span></li>
+                        <li class="flex items-start gap-4"><span class="text-blue-500 text-xl leading-none">✓</span> <span>Advanced Tests (ANOVA, Regression)</span></li>
+                        <li class="flex items-start gap-4"><span class="text-blue-500 text-xl leading-none">✓</span> <span>Professional Interpretation Writing</span></li>
+                        <li class="flex items-start gap-4"><span class="text-blue-500 text-xl leading-none">✓</span> <span>Defensive Logic Support</span></li>
+                    </ul>
+                    <a href="https://wa.me/918825455342" class="w-full py-5 text-center rounded-2xl bg-blue-600 text-white font-black hover:bg-blue-700 shadow-xl shadow-blue-300 transition-all">Select Standard</a>
+                </div>
+
+                <!-- Premium -->
+                <div id="card-premium" class="service-card bg-slate-900 rounded-[3rem] p-10 shadow-2xl text-white flex flex-col">
+                    <div class="mb-8">
+                        <span class="bg-rose-500 text-white px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest">Academic Excellence</span>
+                    </div>
+                    <div class="mb-8">
+                        <h3 class="text-3xl font-black text-blue-400 mb-2">₹30,000</h3>
+                        <p class="text-sm text-slate-400 font-medium">Journal & PhD Grade</p>
+                    </div>
+                    <ul class="space-y-5 mb-12 flex-1 text-sm font-medium text-slate-300">
+                        <li class="flex items-start gap-4 font-bold text-rose-400"><span class="text-rose-500 text-xl leading-none">✨</span> <span>High-Impact Ready</span></li>
+                        <li class="flex items-start gap-4"><span class="text-slate-500 text-xl leading-none">✓</span> <span>Full Protocol Design & Planning</span></li>
+                        <li class="flex items-start gap-4"><span class="text-slate-500 text-xl leading-none">✓</span> <span>Sample Size & Power Analysis</span></li>
+                        <li class="flex items-start gap-4"><span class="text-slate-500 text-xl leading-none">✓</span> <span>Complex Multivariate Modeling</span></li>
+                        <li class="flex items-start gap-4"><span class="text-slate-500 text-xl leading-none">✓</span> <span>Journal Formatting Service</span></li>
+                    </ul>
+                    <a href="https://wa.me/918825455342" class="w-full py-5 text-center rounded-2xl bg-white/10 text-white font-bold hover:bg-white/20 transition-all border border-white/20">Consult Premium</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Quality Comparison -->
+    <section id="comparison" class="py-32 bg-slate-50">
+        <div class="max-w-6xl mx-auto px-4 grid lg:grid-cols-2 gap-20 items-center">
+            <div>
+                <h2 class="text-4xl font-black text-slate-900 mb-8 tracking-tight">Why Choose <br><span class="text-blue-600">Mr. Statistical?</span></h2>
+                <p class="text-lg text-slate-600 mb-10 leading-relaxed font-medium">
+                    We don't just dump numbers. We provide the <strong>clinical context</strong> required for medical research. Our Standard and Premium tiers include detailed explanations so you can defend your work.
+                </p>
+                <div class="space-y-6">
+                    <div class="flex items-center gap-6 p-6 bg-white rounded-3xl border border-slate-100 shadow-sm">
+                        <div class="w-12 h-12 bg-emerald-100 flex items-center justify-center rounded-2xl text-emerald-600 font-black">01</div>
+                        <div>
+                            <p class="font-black text-slate-800">Ethical Data Handling</p>
+                            <p class="text-xs text-slate-500 font-medium">We ensure zero data manipulation.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-6 p-6 bg-white rounded-3xl border border-slate-100 shadow-sm">
+                        <div class="w-12 h-12 bg-blue-100 flex items-center justify-center rounded-2xl text-blue-600 font-black">02</div>
+                        <div>
+                            <p class="font-black text-slate-800">Defensive Logic</p>
+                            <p class="text-xs text-slate-500 font-medium">We explain why specific tests were chosen.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-[3rem] p-12 shadow-2xl border border-slate-100">
+                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-8 text-center">Service Depth Analysis</p>
+                <div class="chart-container">
+                    <canvas id="compChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cost Estimator (Full Features Restored) -->
+    <section id="calculator" class="py-32 px-4">
+        <div class="max-w-5xl mx-auto">
+            <div class="bg-white rounded-[4rem] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.12)] border border-slate-200 overflow-hidden grid lg:grid-cols-5">
+                <div class="lg:col-span-3 p-12 border-r border-slate-50">
+                    <h3 class="text-3xl font-black text-slate-900 mb-10">Smart Quote Estimator</h3>
+                    <div class="space-y-10">
+                        <div>
+                            <label class="text-[10px] font-black text-slate-400 uppercase mb-4 block tracking-widest">Select Core Package</label>
+                            <select id="base" class="w-full p-6 bg-slate-50 border-2 border-slate-100 rounded-[1.5rem] focus:border-blue-500 outline-none font-bold text-slate-800 transition-all appearance-none">
+                                <option value="0">Add-ons Only</option>
+                                <option value="3500">Basic Service (₹3,500 Avg)</option>
+                                <option value="11500" selected>Standard Thesis (₹11,500 Avg)</option>
+                                <option value="30000">Premium Publication (₹30,000)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-[10px] font-black text-slate-400 uppercase mb-4 block tracking-widest">Research Enhancements</label>
+                            <div class="grid grid-cols-1 gap-4">
+                                <label class="flex items-center p-5 border-2 border-slate-50 rounded-[1.5rem] hover:bg-blue-50/50 hover:border-blue-200 transition-all cursor-pointer group">
+                                    <input type="checkbox" class="addon w-6 h-6 rounded-lg border-slate-300 text-blue-600 focus:ring-blue-500" value="500"> 
+                                    <span class="ml-4 font-bold text-slate-700">Sample Size Calculation (+₹500)</span>
+                                </label>
+                                <label class="flex items-center p-5 border-2 border-slate-50 rounded-[1.5rem] hover:bg-blue-50/50 hover:border-blue-200 transition-all cursor-pointer group">
+                                    <input type="checkbox" class="addon w-6 h-6 rounded-lg border-slate-300 text-blue-600 focus:ring-blue-500" value="3000"> 
+                                    <span class="ml-4 font-bold text-slate-700">Journal Formatting & Prep (+₹3,000)</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="pt-10 border-t border-slate-100">
+                            <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-6">Processing Priority</span>
+                            <div class="flex gap-10">
+                                <label class="flex items-center font-bold cursor-pointer"><input type="radio" name="speed" value="1" checked class="w-6 h-6 accent-blue-600"> <span class="ml-3">Standard (5-7 Days)</span></label>
+                                <label class="flex items-center font-bold cursor-pointer"><input type="radio" name="speed" value="1.4" class="w-6 h-6 accent-blue-600"> <span class="ml-3 text-rose-600">Express (24-48 Hours)</span></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:col-span-2 bg-slate-900 text-white p-14 flex flex-col justify-center text-center">
+                    <p class="text-blue-400 text-[10px] font-black uppercase tracking-[0.3em] mb-6">Investment Estimate</p>
+                    <p id="total" class="text-7xl font-black mb-12 tracking-tighter">₹0</p>
+                    <div class="space-y-6 text-sm mb-12 border-y border-white/10 py-10 text-left">
+                        <div class="flex justify-between items-center opacity-70"><span>Booking Advance (50%)</span> <span id="adv" class="font-black text-white text-lg">₹0</span></div>
+                        <div class="flex justify-between items-center opacity-70"><span>Final Handover (50%)</span> <span id="fin" class="font-black text-white text-lg">₹0</span></div>
+                    </div>
+                    <a href="tel:8825455342" class="w-full bg-blue-600 py-6 rounded-[2rem] font-black text-xl hover:bg-blue-500 transition-all shadow-2xl shadow-blue-600/30">Secure Booking</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-100 py-32 text-center">
+        <div class="max-w-6xl mx-auto px-4">
+            <div id="footer-logo-container" class="mb-8">
+                <div class="footer-logo logo-placeholder w-20 h-20 mx-auto">LOGO</div>
+            </div>
+            <h2 class="text-4xl font-black text-slate-900 mb-4 tracking-tighter">Mr. Statistical Consultancy</h2>
+            <p class="text-slate-500 mb-20 text-lg max-w-xl mx-auto font-medium">Empowering Medical Science with Robust Evidence.</p>
+            
+            <div class="grid md:grid-cols-2 gap-10 max-w-4xl mx-auto mb-24">
+                <a href="https://wa.me/918825455342" target="_blank" class="group flex flex-col items-center justify-center p-12 bg-slate-900 text-white rounded-[4rem] shadow-2xl hover:scale-[1.02] transition-all">
+                    <span class="block text-[10px] text-slate-500 uppercase font-black mb-3">Instant Chat</span>
+                    <span class="text-3xl font-black">WhatsApp 8825455342</span>
+                </a>
+                <a href="mailto:mrstatisticalconsultant@gmail.com" class="group flex flex-col items-center justify-center p-12 bg-blue-50 text-blue-900 border-2 border-blue-100 rounded-[4rem] hover:scale-[1.02] transition-all">
+                    <span class="block text-[10px] text-blue-400 uppercase font-black mb-3">Official Mail</span>
+                    <span class="text-xl font-black break-all">mrstatisticalconsultant@gmail.com</span>
+                </a>
+            </div>
+            <div class="pt-12 border-t border-slate-100">
+                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">© 2024 Mr. Statistical Consultancy • Clinical Data Integrity</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // LOGO UPLOAD LOGIC
+        const logoInput = document.getElementById('logo-input');
+        logoInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const base64Logo = event.target.result;
+                    document.getElementById('nav-logo-container').innerHTML = `<img src="${base64Logo}" class="logo-img" alt="Logo">`;
+                    document.getElementById('hero-logo-container').innerHTML = `<img src="${base64Logo}" class="hero-logo" alt="Logo">`;
+                    document.getElementById('footer-logo-container').innerHTML = `<img src="${base64Logo}" class="footer-logo mx-auto" alt="Logo">`;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Role Selector logic
+        function selectRole(role) {
+            document.querySelectorAll('.role-btn').forEach(b => b.classList.remove('bg-blue-600', 'text-white', 'border-blue-600', 'bg-slate-50/50'));
+            document.querySelectorAll('.service-card').forEach(c => c.classList.remove('highlight-card', 'opacity-30'));
+            
+            const btn = document.getElementById('btn-'+role);
+            btn.classList.add('bg-blue-600', 'text-white', 'border-blue-600');
+            
+            const rec = document.getElementById('recommendation-text');
+            rec.classList.remove('hidden');
+
+            let cardId = '';
+            if(role === 'pg') { 
+                cardId = 'card-standard'; 
+                rec.innerHTML = "🎯 <strong>Our Recommendation:</strong> The <strong>Standard Package</strong> is our most popular choice for MD/MS theses, covering everything from data cleaning to final result writing."; 
+            }
+            else if(role === 'phd' || role === 'author') { 
+                cardId = 'card-premium'; 
+                rec.innerHTML = "🏆 <strong>Our Recommendation:</strong> <strong>Premium Support</strong> is essential for PhD and International Journal standards, offering deep study design consultation."; 
+            }
+            else { 
+                cardId = 'card-basic'; 
+                rec.innerHTML = "✅ <strong>Our Recommendation:</strong> <strong>Basic Analysis</strong> is perfect for quick pilot studies or smaller departmental projects."; 
+            }
+
+            const card = document.getElementById(cardId);
+            card.classList.add('highlight-card');
+            document.querySelectorAll('.service-card').forEach(c => { if(c.id !== cardId) c.classList.add('opacity-30'); });
+        }
+
+        // Comparison Chart
+        const ctx = document.getElementById('compChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Data Clean', 'Advanced Tests', 'Logic Help', 'Revision', 'Publication'],
+                datasets: [
+                    { label: 'Basic', data: [100, 50, 20, 10, 0], backgroundColor: '#10b981' },
+                    { label: 'Standard', data: [100, 95, 80, 70, 40], backgroundColor: '#3b82f6' },
+                    { label: 'Premium', data: [100, 100, 100, 100, 100], backgroundColor: '#f43f5e' }
+                ]
+            },
+            options: { 
+                responsive: true, 
+                maintainAspectRatio: false,
+                plugins: { legend: { position: 'bottom', labels: { font: { weight: 'bold', size: 10 } } } }
+            }
+        });
+
+        // Calculator logic
+        const calc = () => {
+            let total = parseInt(document.getElementById('base').value);
+            document.querySelectorAll('.addon:checked').forEach(a => total += parseInt(a.value));
+            const speed = parseFloat(document.querySelector('input[name="speed"]:checked').value);
+            total = Math.round(total * speed);
+            
+            const fmt = (v) => "₹" + v.toLocaleString('en-IN');
+            document.getElementById('total').innerText = fmt(total);
+            document.getElementById('adv').innerText = fmt(Math.round(total * 0.5));
+            document.getElementById('fin').innerText = fmt(Math.round(total * 0.5));
+        };
+        document.querySelectorAll('input, select').forEach(el => el.addEventListener('change', calc));
+        calc();
+    </script>
+</body>
+</html>

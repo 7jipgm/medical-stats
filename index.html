@@ -6,317 +6,319 @@
     <title>Mr. Statistical Consultancy | Professional Thesis Support</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background-color: #f8fafc;
-            scroll-behavior: smooth;
+        :root {
+            --brand-blue: #2563eb;
+            --brand-dark: #0f172a;
         }
-        .chart-container {
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #ffffff;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at top right, #eff6ff 0%, #ffffff 100%);
+        }
+        .card-shadow {
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.05);
+        }
+        .active-package {
+            border: 3px solid var(--brand-blue);
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px -12px rgba(37, 99, 235, 0.15);
+        }
+        .role-btn.active {
+            background: var(--brand-blue);
+            color: white;
+            border-color: var(--brand-blue);
+            box-shadow: 0 10px 20px -5px rgba(37, 99, 235, 0.4);
+        }
+        .chart-wrapper {
             position: relative;
             width: 100%;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 350px;
-            max-height: 400px;
+            height: 300px;
         }
-        .highlight-card {
-            border: 2px solid #3b82f6;
-            transform: scale(1.02);
-            box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.25);
-            z-index: 20;
+        /* Mobile text scaling */
+        @media (max-width: 640px) {
+            .hero-title { font-size: 2.75rem !important; line-height: 1.1; }
+            .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
         }
-        .service-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .logo-img { height: 48px; width: auto; object-fit: contain; }
-        .hero-logo { height: 140px; width: auto; margin-bottom: 2rem; display: inline-block; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1)); }
-        .footer-logo { height: 60px; width: auto; margin-bottom: 1rem; }
-        
-        .logo-placeholder {
-            background: #e2e8f0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 1rem;
-            border: 2px dashed #cbd5e1;
-            color: #64748b;
-            font-weight: bold;
-        }
-        .gradient-text {
-            background: linear-gradient(to right, #1e293b, #3b82f6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
     </style>
 </head>
-<body class="text-slate-700">
+<body class="text-slate-900">
 
     <!-- Navigation -->
-    <nav class="bg-white/80 backdrop-blur-md border-b border-slate-200 sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center gap-4">
-                <div id="nav-logo-container">
-                    <div class="logo-img logo-placeholder w-12 h-12">LOGO</div>
-                </div>
-                <div class="hidden sm:block font-bold text-xl text-slate-800 tracking-tight">
-                    Mr. Statistical <span class="text-blue-600">Consultancy</span>
-                </div>
+    <nav class="glass-nav fixed w-full z-50 border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 flex justify-between items-center h-16 sm:h-20">
+            <div class="flex items-center gap-2 sm:gap-3">
+                <div class="w-8 h-8 sm:w-10 sm:h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white font-extrabold text-lg shadow-lg shadow-blue-200">M</div>
+                <span class="font-extrabold text-lg sm:text-xl tracking-tight">Mr. Statistical</span>
             </div>
-            <div class="hidden md:flex space-x-8 text-sm font-semibold text-slate-600 items-center">
-                <a href="#packages" class="hover:text-blue-600 transition">Packages</a>
+            <div class="hidden md:flex items-center gap-8 text-sm font-bold text-slate-600">
+                <a href="#packages" class="hover:text-blue-600 transition">Services</a>
                 <a href="#comparison" class="hover:text-blue-600 transition">Quality</a>
-                <a href="#calculator" class="hover:text-blue-600 transition">Estimator</a>
-                <a href="tel:+918825455342" class="px-6 py-2.5 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition shadow-lg shadow-blue-200">8825455342</a>
+                <a href="#calculator" class="hover:text-blue-600 transition">Pricing</a>
+                <a href="tel:+918825455342" class="bg-slate-900 text-white px-6 py-2.5 rounded-full hover:bg-blue-600 transition shadow-lg">Call Expert</a>
             </div>
+            <a href="https://wa.me/918825455342" class="md:hidden text-blue-600 font-bold text-sm">WhatsApp</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <header class="bg-gradient-to-br from-slate-50 via-blue-50/30 to-white py-16 md:py-28 border-b border-slate-100">
-        <div class="max-w-4xl mx-auto px-4 text-center">
-            
-            <!-- Management Controls (For user to setup logo) -->
-            <div id="upload-zone" class="mb-12 p-6 bg-white border border-blue-100 rounded-[2rem] inline-block shadow-xl shadow-blue-900/5">
-                <p class="text-[10px] font-black text-blue-500 uppercase mb-3 tracking-[0.2em]">Brand Identity Setup</p>
-                <input type="file" id="logo-input" accept="image/*" class="text-xs text-slate-500 file:mr-4 file:py-2 file:px-6 file:rounded-full file:border-0 file:text-xs file:font-bold file:bg-blue-600 file:text-white hover:file:bg-blue-700 cursor-pointer">
-            </div>
-
-            <div class="block">
-                <div id="hero-logo-container">
-                    <div class="hero-logo logo-placeholder w-32 h-32 mx-auto mb-8">LOGO</div>
+    <header class="hero-gradient pt-32 pb-16 sm:pt-48 sm:pb-32 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="text-center max-w-4xl mx-auto">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 text-blue-700 text-xs font-bold mb-8 animate-bounce">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-600"></span>
+                    </span>
+                    India's Trusted Medical Stat Consultant
                 </div>
-            </div>
-            
-            <h1 class="text-5xl md:text-7xl font-black text-slate-900 mb-6 tracking-tight leading-[1.1]">
-                Mr. Statistical <br><span class="gradient-text">Consultancy</span>
-            </h1>
-            <h2 class="text-xl md:text-2xl font-medium text-slate-500 mb-10">Precision Statistical Support for Medical Professionals</h2>
-            
-            <div class="flex flex-wrap justify-center gap-4 mb-16">
-                <span class="px-4 py-2 bg-white border border-slate-200 rounded-full text-xs font-bold text-slate-600 shadow-sm">✓ MD/MS Thesis</span>
-                <span class="px-4 py-2 bg-white border border-slate-200 rounded-full text-xs font-bold text-slate-600 shadow-sm">✓ PhD Support</span>
-                <span class="px-4 py-2 bg-white border border-slate-200 rounded-full text-xs font-bold text-slate-600 shadow-sm">✓ Journal Publication</span>
-            </div>
+                
+                <h1 class="hero-title text-5xl sm:text-7xl font-extrabold text-slate-900 mb-6 tracking-tight">
+                    Data Driven <span class="text-blue-600">Medical</span> Insights.
+                </h1>
+                <p class="text-lg sm:text-xl text-slate-500 mb-12 font-medium max-w-2xl mx-auto leading-relaxed">
+                    Precision statistical analysis for MD/MS Thesis, PhD Research, and high-impact Journal Publications.
+                </p>
 
-            <!-- Role Selector -->
-            <div class="bg-white p-3 rounded-[2.5rem] shadow-2xl shadow-blue-900/10 border border-slate-100 mx-auto max-w-3xl overflow-hidden">
-                <div class="p-6">
-                    <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] mb-8 text-center">Identify Your Research Goal</p>
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <button onclick="selectRole('pg')" id="btn-pg" class="role-btn p-5 rounded-2xl border border-slate-100 hover:border-blue-300 transition-all text-sm font-bold bg-slate-50/50">PG Student</button>
-                        <button onclick="selectRole('phd')" id="btn-phd" class="role-btn p-5 rounded-2xl border border-slate-100 hover:border-blue-300 transition-all text-sm font-bold bg-slate-50/50">PhD Scholar</button>
-                        <button onclick="selectRole('author')" id="btn-author" class="role-btn p-5 rounded-2xl border border-slate-100 hover:border-blue-300 transition-all text-sm font-bold bg-slate-50/50">Journal Author</button>
-                        <button onclick="selectRole('basic')" id="btn-basic" class="role-btn p-5 rounded-2xl border border-slate-100 hover:border-blue-300 transition-all text-sm font-bold bg-slate-50/50">Minor Project</button>
+                <!-- Interactive Role Selector -->
+                <div class="bg-white p-2 sm:p-4 rounded-[2rem] sm:rounded-[3rem] shadow-2xl border border-slate-100 max-w-3xl mx-auto">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+                        <button onclick="selectRole('pg')" id="btn-pg" class="role-btn p-3 sm:p-5 rounded-2xl sm:rounded-[2rem] border border-slate-100 hover:border-blue-200 transition-all text-xs sm:text-sm font-bold text-slate-600">PG Student</button>
+                        <button onclick="selectRole('phd')" id="btn-phd" class="role-btn p-3 sm:p-5 rounded-2xl sm:rounded-[2rem] border border-slate-100 hover:border-blue-200 transition-all text-xs sm:text-sm font-bold text-slate-600">PhD Scholar</button>
+                        <button onclick="selectRole('author')" id="btn-author" class="role-btn p-3 sm:p-5 rounded-2xl sm:rounded-[2rem] border border-slate-100 hover:border-blue-200 transition-all text-xs sm:text-sm font-bold text-slate-600">Author</button>
+                        <button onclick="selectRole('basic')" id="btn-basic" class="role-btn p-3 sm:p-5 rounded-2xl sm:rounded-[2rem] border border-slate-100 hover:border-blue-200 transition-all text-xs sm:text-sm font-bold text-slate-600">Minor Project</button>
                     </div>
+                    <div id="recommendation-text" class="hidden mt-4 p-4 bg-blue-50 rounded-2xl text-xs sm:text-sm text-blue-800 font-medium italic"></div>
                 </div>
-                <div id="recommendation-text" class="text-blue-700 bg-blue-50/50 p-6 text-sm hidden border-t border-blue-100 text-center font-medium italic"></div>
             </div>
         </div>
     </header>
 
-    <!-- Packages Section -->
-    <section id="packages" class="py-32 px-4 bg-white">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-20">
-                <h3 class="text-4xl font-black text-slate-900 mb-4 tracking-tight">Our Service Tiers</h3>
-                <div class="h-1.5 w-20 bg-blue-600 mx-auto rounded-full"></div>
+    <!-- Services Grid -->
+    <section id="packages" class="section-padding py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="mb-16 text-center sm:text-left flex flex-col sm:flex-row justify-between items-end gap-6">
+                <div class="max-w-xl">
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">Our Service Tiers</h2>
+                    <p class="text-slate-500 font-medium">Transparent pricing tailored for every research stage.</p>
+                </div>
+                <div class="hidden sm:block h-px flex-1 bg-slate-100 mx-10"></div>
             </div>
-            
-            <div class="grid lg:grid-cols-3 gap-10">
+
+            <div class="grid lg:grid-cols-3 gap-8 sm:gap-10 items-stretch">
                 <!-- Basic -->
-                <div id="card-basic" class="service-card bg-slate-50 rounded-[3rem] p-10 border border-slate-200 flex flex-col">
-                    <div class="mb-8">
-                        <span class="bg-emerald-100 text-emerald-700 px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest">Minor Research</span>
+                <div id="card-basic" class="service-card flex flex-col p-8 sm:p-10 rounded-[2.5rem] bg-slate-50 border border-slate-100 transition-all duration-500">
+                    <span class="w-fit px-4 py-1.5 rounded-full bg-emerald-100 text-emerald-700 text-[10px] font-black uppercase tracking-widest mb-6">Essentials</span>
+                    <h3 class="text-3xl font-extrabold mb-2 text-slate-900">₹3,000+</h3>
+                    <p class="text-sm text-slate-500 font-bold mb-8">Basic Statistical Foundation</p>
+                    <div class="space-y-4 mb-10 flex-1">
+                        <div class="flex items-center gap-3 text-sm font-semibold text-slate-600">
+                            <svg class="w-5 h-5 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+                            Descriptive Stats (Mean, SD, %)
+                        </div>
+                        <div class="flex items-center gap-3 text-sm font-semibold text-slate-600">
+                            <svg class="w-5 h-5 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+                            Chi-square & T-test
+                        </div>
+                        <div class="flex items-center gap-3 text-sm font-semibold text-slate-600">
+                            <svg class="w-5 h-5 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+                            Standard Tables
+                        </div>
                     </div>
-                    <div class="mb-8">
-                        <h3 class="text-3xl font-black text-slate-900 mb-2">₹3,000 – ₹4k</h3>
-                        <p class="text-sm text-slate-500 font-medium">Fundamental Analysis Only</p>
-                    </div>
-                    <ul class="space-y-5 mb-12 flex-1 text-sm font-medium text-slate-600">
-                        <li class="flex items-start gap-4"><span class="text-emerald-500 text-xl leading-none">✓</span> <span>Descriptive Statistics (Mean, SD, %)</span></li>
-                        <li class="flex items-start gap-4"><span class="text-emerald-500 text-xl leading-none">✓</span> <span>Basic Inferential (Chi-sq, T-test)</span></li>
-                        <li class="flex items-start gap-4"><span class="text-emerald-500 text-xl leading-none">✓</span> <span>Clean Data Output Files</span></li>
-                        <li class="flex items-start gap-4"><span class="text-emerald-500 text-xl leading-none">✓</span> <span>Standard Formatted Tables</span></li>
-                    </ul>
-                    <a href="https://wa.me/918825455342" class="w-full py-5 text-center rounded-2xl bg-white text-slate-900 font-bold hover:bg-slate-100 transition-all border border-slate-300 shadow-sm">WhatsApp Inquiry</a>
+                    <a href="https://wa.me/918825455342" class="w-full py-4 text-center rounded-2xl border-2 border-slate-200 font-bold text-slate-600 hover:bg-slate-100 transition">Get Started</a>
                 </div>
 
                 <!-- Standard -->
-                <div id="card-standard" class="service-card bg-white rounded-[3rem] p-10 shadow-2xl border-2 border-blue-500 flex flex-col relative lg:scale-105 z-10">
-                    <div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-blue-600 text-white px-8 py-2.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-xl">Thesis Special</div>
-                    <div class="mb-8 mt-4">
-                        <span class="bg-blue-100 text-blue-700 px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest">Dissertation Pro</span>
+                <div id="card-standard" class="service-card flex flex-col p-8 sm:p-10 rounded-[2.5rem] bg-white border-2 border-blue-100 card-shadow transition-all duration-500 relative">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-600 text-white px-6 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-xl">Best Value</div>
+                    <span class="w-fit px-4 py-1.5 rounded-full bg-blue-50 text-blue-700 text-[10px] font-black uppercase tracking-widest mb-6">Thesis Expert</span>
+                    <h3 class="text-3xl font-extrabold mb-2 text-slate-900">₹8,000 - 15k</h3>
+                    <p class="text-sm text-blue-600 font-bold mb-8">Full Dissertation Analysis</p>
+                    <div class="space-y-4 mb-10 flex-1">
+                        <div class="flex items-center gap-3 text-sm font-bold text-slate-800">
+                            <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+                            Data Cleaning & Outliers
+                        </div>
+                        <div class="flex items-center gap-3 text-sm font-bold text-slate-800">
+                            <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+                            ANOVA, Regression, ROC
+                        </div>
+                        <div class="flex items-center gap-3 text-sm font-bold text-slate-800">
+                            <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+                            Results & Interpretation
+                        </div>
+                        <div class="flex items-center gap-3 text-sm font-bold text-slate-800">
+                            <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+                            Methodology Logic Support
+                        </div>
                     </div>
-                    <div class="mb-8">
-                        <h3 class="text-4xl font-black text-slate-900 mb-2">₹8,000 – ₹15k</h3>
-                        <p class="text-sm text-blue-600 font-bold">Comprehensive Research Support</p>
-                    </div>
-                    <ul class="space-y-5 mb-12 flex-1 text-sm font-medium text-slate-700">
-                        <li class="flex items-start gap-4 font-bold text-blue-600"><span class="text-blue-600 text-xl leading-none">★</span> <span>Everything in Basic Tier</span></li>
-                        <li class="flex items-start gap-4"><span class="text-blue-500 text-xl leading-none">✓</span> <span>Data Cleaning & Outlier Removal</span></li>
-                        <li class="flex items-start gap-4"><span class="text-blue-500 text-xl leading-none">✓</span> <span>Advanced Tests (ANOVA, Regression)</span></li>
-                        <li class="flex items-start gap-4"><span class="text-blue-500 text-xl leading-none">✓</span> <span>Professional Interpretation Writing</span></li>
-                        <li class="flex items-start gap-4"><span class="text-blue-500 text-xl leading-none">✓</span> <span>Defensive Logic Support</span></li>
-                    </ul>
-                    <a href="https://wa.me/918825455342" class="w-full py-5 text-center rounded-2xl bg-blue-600 text-white font-black hover:bg-blue-700 shadow-xl shadow-blue-300 transition-all">Select Standard</a>
+                    <a href="https://wa.me/918825455342" class="w-full py-4 text-center rounded-2xl bg-blue-600 font-bold text-white hover:bg-blue-700 transition shadow-lg shadow-blue-200">Select Standard</a>
                 </div>
 
                 <!-- Premium -->
-                <div id="card-premium" class="service-card bg-slate-900 rounded-[3rem] p-10 shadow-2xl text-white flex flex-col">
-                    <div class="mb-8">
-                        <span class="bg-rose-500 text-white px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest">Academic Excellence</span>
+                <div id="card-premium" class="service-card flex flex-col p-8 sm:p-10 rounded-[2.5rem] bg-slate-900 border border-slate-800 transition-all duration-500 text-white">
+                    <span class="w-fit px-4 py-1.5 rounded-full bg-blue-500 text-white text-[10px] font-black uppercase tracking-widest mb-6">PhD / Journal</span>
+                    <h3 class="text-3xl font-extrabold mb-2">₹30,000</h3>
+                    <p class="text-sm text-slate-400 font-bold mb-8">Full Research Lifecycle</p>
+                    <div class="space-y-4 mb-10 flex-1">
+                        <div class="flex items-center gap-3 text-sm font-medium text-slate-300">
+                            <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+                            Protocol & Sample Size
+                        </div>
+                        <div class="flex items-center gap-3 text-sm font-medium text-slate-300">
+                            <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+                            Complex Modeling (SEM/ML)
+                        </div>
+                        <div class="flex items-center gap-3 text-sm font-medium text-slate-300">
+                            <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+                            Publication Ready Results
+                        </div>
                     </div>
-                    <div class="mb-8">
-                        <h3 class="text-3xl font-black text-blue-400 mb-2">₹30,000</h3>
-                        <p class="text-sm text-slate-400 font-medium">Journal & PhD Grade</p>
-                    </div>
-                    <ul class="space-y-5 mb-12 flex-1 text-sm font-medium text-slate-300">
-                        <li class="flex items-start gap-4 font-bold text-rose-400"><span class="text-rose-500 text-xl leading-none">✨</span> <span>High-Impact Ready</span></li>
-                        <li class="flex items-start gap-4"><span class="text-slate-500 text-xl leading-none">✓</span> <span>Full Protocol Design & Planning</span></li>
-                        <li class="flex items-start gap-4"><span class="text-slate-500 text-xl leading-none">✓</span> <span>Sample Size & Power Analysis</span></li>
-                        <li class="flex items-start gap-4"><span class="text-slate-500 text-xl leading-none">✓</span> <span>Complex Multivariate Modeling</span></li>
-                        <li class="flex items-start gap-4"><span class="text-slate-500 text-xl leading-none">✓</span> <span>Journal Formatting Service</span></li>
-                    </ul>
-                    <a href="https://wa.me/918825455342" class="w-full py-5 text-center rounded-2xl bg-white/10 text-white font-bold hover:bg-white/20 transition-all border border-white/20">Consult Premium</a>
+                    <a href="https://wa.me/918825455342" class="w-full py-4 text-center rounded-2xl border border-white/20 font-bold text-white hover:bg-white/10 transition">Book Consultation</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Detailed Quality Comparison -->
-    <section id="comparison" class="py-32 bg-slate-50">
-        <div class="max-w-6xl mx-auto px-4 grid lg:grid-cols-2 gap-20 items-center">
+    <!-- Detailed Insights -->
+    <section id="comparison" class="py-24 bg-slate-50 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-16 items-center">
             <div>
-                <h2 class="text-4xl font-black text-slate-900 mb-8 tracking-tight">Why Choose <br><span class="text-blue-600">Mr. Statistical?</span></h2>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-6 tracking-tight">The <span class="text-blue-600">Golden Standard</span> in Analysis</h2>
                 <p class="text-lg text-slate-600 mb-10 leading-relaxed font-medium">
-                    We don't just dump numbers. We provide the <strong>clinical context</strong> required for medical research. Our Standard and Premium tiers include detailed explanations so you can defend your work.
+                    We specialize in medical data where accuracy isn't just a metric—it's a clinical necessity. We provide the logic behind every p-value.
                 </p>
-                <div class="space-y-6">
-                    <div class="flex items-center gap-6 p-6 bg-white rounded-3xl border border-slate-100 shadow-sm">
-                        <div class="w-12 h-12 bg-emerald-100 flex items-center justify-center rounded-2xl text-emerald-600 font-black">01</div>
-                        <div>
-                            <p class="font-black text-slate-800">Ethical Data Handling</p>
-                            <p class="text-xs text-slate-500 font-medium">We ensure zero data manipulation.</p>
-                        </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="p-6 bg-white rounded-3xl border border-slate-200">
+                        <div class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 font-bold mb-4">01</div>
+                        <h4 class="font-bold mb-1">Clean Data</h4>
+                        <p class="text-xs text-slate-500 font-medium">Outlier removal and verification.</p>
                     </div>
-                    <div class="flex items-center gap-6 p-6 bg-white rounded-3xl border border-slate-100 shadow-sm">
-                        <div class="w-12 h-12 bg-blue-100 flex items-center justify-center rounded-2xl text-blue-600 font-black">02</div>
-                        <div>
-                            <p class="font-black text-slate-800">Defensive Logic</p>
-                            <p class="text-xs text-slate-500 font-medium">We explain why specific tests were chosen.</p>
-                        </div>
+                    <div class="p-6 bg-white rounded-3xl border border-slate-200">
+                        <div class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 font-bold mb-4">02</div>
+                        <h4 class="font-bold mb-1">Quick Turnaround</h4>
+                        <p class="text-xs text-slate-500 font-medium">Strict adherence to deadlines.</p>
                     </div>
                 </div>
             </div>
-            <div class="bg-white rounded-[3rem] p-12 shadow-2xl border border-slate-100">
-                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-8 text-center">Service Depth Analysis</p>
-                <div class="chart-container">
+            <div class="bg-white p-8 sm:p-12 rounded-[3rem] shadow-2xl border border-slate-100">
+                <h5 class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-8 text-center">Comprehensive Service Coverage</h5>
+                <div class="chart-wrapper">
                     <canvas id="compChart"></canvas>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Cost Estimator (Full Features Restored) -->
-    <section id="calculator" class="py-32 px-4">
-        <div class="max-w-5xl mx-auto">
-            <div class="bg-white rounded-[4rem] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.12)] border border-slate-200 overflow-hidden grid lg:grid-cols-5">
-                <div class="lg:col-span-3 p-12 border-r border-slate-50">
-                    <h3 class="text-3xl font-black text-slate-900 mb-10">Smart Quote Estimator</h3>
-                    <div class="space-y-10">
+    <!-- Smart Pricing -->
+    <section id="calculator" class="py-24 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">Instant Quote Estimator</h2>
+                <p class="text-slate-500 font-medium">Fair pricing based on your specific needs.</p>
+            </div>
+            
+            <div class="bg-slate-50 rounded-[3rem] sm:rounded-[4rem] overflow-hidden grid lg:grid-cols-5 border border-slate-100">
+                <!-- Selection Side -->
+                <div class="lg:col-span-3 p-8 sm:p-14 border-r border-slate-200 bg-white">
+                    <div class="space-y-12">
                         <div>
-                            <label class="text-[10px] font-black text-slate-400 uppercase mb-4 block tracking-widest">Select Core Package</label>
-                            <select id="base" class="w-full p-6 bg-slate-50 border-2 border-slate-100 rounded-[1.5rem] focus:border-blue-500 outline-none font-bold text-slate-800 transition-all appearance-none">
+                            <label class="text-xs font-black text-slate-400 uppercase tracking-widest block mb-6">Select Your Base Need</label>
+                            <select id="base" class="w-full p-5 bg-slate-50 border-2 border-slate-100 rounded-2xl focus:border-blue-500 outline-none font-bold text-slate-800 transition-all appearance-none cursor-pointer">
                                 <option value="0">Add-ons Only</option>
-                                <option value="3500">Basic Service (₹3,500 Avg)</option>
-                                <option value="11500" selected>Standard Thesis (₹11,500 Avg)</option>
-                                <option value="30000">Premium Publication (₹30,000)</option>
+                                <option value="3500">Minor Project Analysis (₹3,500)</option>
+                                <option value="12000" selected>Thesis / Dissertation (₹12,000 Avg)</option>
+                                <option value="30000">PhD / Journal Analysis (₹30,000)</option>
                             </select>
                         </div>
+
                         <div>
-                            <label class="text-[10px] font-black text-slate-400 uppercase mb-4 block tracking-widest">Research Enhancements</label>
+                            <label class="text-xs font-black text-slate-400 uppercase tracking-widest block mb-6">Recommended Add-ons</label>
                             <div class="grid grid-cols-1 gap-4">
-                                <label class="flex items-center p-5 border-2 border-slate-50 rounded-[1.5rem] hover:bg-blue-50/50 hover:border-blue-200 transition-all cursor-pointer group">
-                                    <input type="checkbox" class="addon w-6 h-6 rounded-lg border-slate-300 text-blue-600 focus:ring-blue-500" value="500"> 
-                                    <span class="ml-4 font-bold text-slate-700">Sample Size Calculation (+₹500)</span>
+                                <label class="flex items-center p-5 border-2 border-slate-50 rounded-2xl hover:border-blue-200 transition-all cursor-pointer group bg-slate-50/50">
+                                    <input type="checkbox" class="addon w-6 h-6 rounded-lg text-blue-600 focus:ring-blue-500 border-slate-300" value="1000"> 
+                                    <span class="ml-4 font-bold text-slate-700">Sample Size Calculation (+₹1,000)</span>
                                 </label>
-                                <label class="flex items-center p-5 border-2 border-slate-50 rounded-[1.5rem] hover:bg-blue-50/50 hover:border-blue-200 transition-all cursor-pointer group">
-                                    <input type="checkbox" class="addon w-6 h-6 rounded-lg border-slate-300 text-blue-600 focus:ring-blue-500" value="3000"> 
-                                    <span class="ml-4 font-bold text-slate-700">Journal Formatting & Prep (+₹3,000)</span>
+                                <label class="flex items-center p-5 border-2 border-slate-50 rounded-2xl hover:border-blue-200 transition-all cursor-pointer group bg-slate-50/50">
+                                    <input type="checkbox" class="addon w-6 h-6 rounded-lg text-blue-600 focus:ring-blue-500 border-slate-300" value="2500"> 
+                                    <span class="ml-4 font-bold text-slate-700">Protocol Design Help (+₹2,500)</span>
                                 </label>
                             </div>
                         </div>
-                        <div class="pt-10 border-t border-slate-100">
-                            <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-6">Processing Priority</span>
-                            <div class="flex gap-10">
-                                <label class="flex items-center font-bold cursor-pointer"><input type="radio" name="speed" value="1" checked class="w-6 h-6 accent-blue-600"> <span class="ml-3">Standard (5-7 Days)</span></label>
-                                <label class="flex items-center font-bold cursor-pointer"><input type="radio" name="speed" value="1.4" class="w-6 h-6 accent-blue-600"> <span class="ml-3 text-rose-600">Express (24-48 Hours)</span></label>
+
+                        <div>
+                            <label class="text-xs font-black text-slate-400 uppercase tracking-widest block mb-6">Delivery Speed</label>
+                            <div class="flex flex-wrap gap-6 sm:gap-10">
+                                <label class="flex items-center font-bold cursor-pointer"><input type="radio" name="speed" value="1" checked class="w-6 h-6 accent-blue-600"> <span class="ml-3 text-sm">Standard (5-7 Days)</span></label>
+                                <label class="flex items-center font-bold cursor-pointer text-rose-600"><input type="radio" name="speed" value="1.4" class="w-6 h-6 accent-rose-600"> <span class="ml-3 text-sm">Express (24-48 Hours)</span></label>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="lg:col-span-2 bg-slate-900 text-white p-14 flex flex-col justify-center text-center">
-                    <p class="text-blue-400 text-[10px] font-black uppercase tracking-[0.3em] mb-6">Investment Estimate</p>
-                    <p id="total" class="text-7xl font-black mb-12 tracking-tighter">₹0</p>
-                    <div class="space-y-6 text-sm mb-12 border-y border-white/10 py-10 text-left">
-                        <div class="flex justify-between items-center opacity-70"><span>Booking Advance (50%)</span> <span id="adv" class="font-black text-white text-lg">₹0</span></div>
-                        <div class="flex justify-between items-center opacity-70"><span>Final Handover (50%)</span> <span id="fin" class="font-black text-white text-lg">₹0</span></div>
+
+                <!-- Price Side -->
+                <div class="lg:col-span-2 bg-slate-900 p-10 sm:p-14 text-center flex flex-col justify-center">
+                    <p class="text-blue-400 text-xs font-bold uppercase tracking-widest mb-4">Estimated Investment</p>
+                    <div id="total" class="text-6xl sm:text-7xl font-extrabold text-white mb-12 tracking-tighter">₹0</div>
+                    
+                    <div class="space-y-6 text-sm mb-12 py-10 border-y border-white/10 text-left">
+                        <div class="flex justify-between items-center opacity-60 text-white"><span>Initial Deposit (50%)</span> <span id="adv" class="font-bold text-white text-lg">₹0</span></div>
+                        <div class="flex justify-between items-center opacity-60 text-white"><span>Final Delivery (50%)</span> <span id="fin" class="font-bold text-white text-lg">₹0</span></div>
                     </div>
-                    <a href="tel:8825455342" class="w-full bg-blue-600 py-6 rounded-[2rem] font-black text-xl hover:bg-blue-500 transition-all shadow-2xl shadow-blue-600/30">Secure Booking</a>
+                    
+                    <a href="tel:+918825455342" class="w-full bg-blue-600 py-5 rounded-2xl font-extrabold text-lg text-white hover:bg-blue-500 transition shadow-2xl shadow-blue-600/30">Secure My Spot</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-white border-t border-slate-100 py-32 text-center">
-        <div class="max-w-6xl mx-auto px-4">
-            <div id="footer-logo-container" class="mb-8">
-                <div class="footer-logo logo-placeholder w-20 h-20 mx-auto">LOGO</div>
+    <footer class="bg-slate-50 pt-24 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="grid md:grid-cols-2 gap-10 mb-20">
+                <div class="p-8 sm:p-12 bg-white rounded-[3rem] border border-slate-200">
+                    <h4 class="text-2xl font-extrabold mb-4">Direct Inquiry</h4>
+                    <p class="text-slate-500 font-medium mb-8">Discuss your project directly with our lead statistician.</p>
+                    <a href="https://wa.me/918825455342" class="inline-flex items-center gap-4 text-blue-600 font-extrabold text-xl sm:text-2xl group">
+                        8825455342
+                        <svg class="w-6 h-6 group-hover:translate-x-2 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </a>
+                </div>
+                <div class="p-8 sm:p-12 bg-blue-600 rounded-[3rem] text-white">
+                    <h4 class="text-2xl font-extrabold mb-4">Email Records</h4>
+                    <p class="text-blue-100 font-medium mb-8">Send your data files or protocol draft for a free review.</p>
+                    <a href="mailto:mrstatisticalconsultant@gmail.com" class="text-lg sm:text-xl font-bold break-all border-b-2 border-white/30 hover:border-white transition">mrstatisticalconsultant@gmail.com</a>
+                </div>
             </div>
-            <h2 class="text-4xl font-black text-slate-900 mb-4 tracking-tighter">Mr. Statistical Consultancy</h2>
-            <p class="text-slate-500 mb-20 text-lg max-w-xl mx-auto font-medium">Empowering Medical Science with Robust Evidence.</p>
-            
-            <div class="grid md:grid-cols-2 gap-10 max-w-4xl mx-auto mb-24">
-                <a href="https://wa.me/918825455342" target="_blank" class="group flex flex-col items-center justify-center p-12 bg-slate-900 text-white rounded-[4rem] shadow-2xl hover:scale-[1.02] transition-all">
-                    <span class="block text-[10px] text-slate-500 uppercase font-black mb-3">Instant Chat</span>
-                    <span class="text-3xl font-black">WhatsApp 8825455342</span>
-                </a>
-                <a href="mailto:mrstatisticalconsultant@gmail.com" class="group flex flex-col items-center justify-center p-12 bg-blue-50 text-blue-900 border-2 border-blue-100 rounded-[4rem] hover:scale-[1.02] transition-all">
-                    <span class="block text-[10px] text-blue-400 uppercase font-black mb-3">Official Mail</span>
-                    <span class="text-xl font-black break-all">mrstatisticalconsultant@gmail.com</span>
-                </a>
-            </div>
-            <div class="pt-12 border-t border-slate-100">
-                <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">© 2024 Mr. Statistical Consultancy • Clinical Data Integrity</p>
+            <div class="text-center pt-12 border-t border-slate-200">
+                <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">© 2024 Mr. Statistical Consultancy • Precision Ethics Integrity</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // LOGO UPLOAD LOGIC
-        const logoInput = document.getElementById('logo-input');
-        logoInput.addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    const base64Logo = event.target.result;
-                    document.getElementById('nav-logo-container').innerHTML = `<img src="${base64Logo}" class="logo-img" alt="Logo">`;
-                    document.getElementById('hero-logo-container').innerHTML = `<img src="${base64Logo}" class="hero-logo" alt="Logo">`;
-                    document.getElementById('footer-logo-container').innerHTML = `<img src="${base64Logo}" class="footer-logo mx-auto" alt="Logo">`;
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-
         // Role Selector logic
         function selectRole(role) {
-            document.querySelectorAll('.role-btn').forEach(b => b.classList.remove('bg-blue-600', 'text-white', 'border-blue-600', 'bg-slate-50/50'));
-            document.querySelectorAll('.service-card').forEach(c => c.classList.remove('highlight-card', 'opacity-30'));
+            document.querySelectorAll('.role-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.service-card').forEach(c => c.classList.remove('active-package', 'opacity-40'));
             
             const btn = document.getElementById('btn-'+role);
-            btn.classList.add('bg-blue-600', 'text-white', 'border-blue-600');
+            btn.classList.add('active');
             
             const rec = document.getElementById('recommendation-text');
             rec.classList.remove('hidden');
@@ -324,20 +326,25 @@
             let cardId = '';
             if(role === 'pg') { 
                 cardId = 'card-standard'; 
-                rec.innerHTML = "🎯 <strong>Our Recommendation:</strong> The <strong>Standard Package</strong> is our most popular choice for MD/MS theses, covering everything from data cleaning to final result writing."; 
+                rec.innerHTML = "🎯 <strong>Expert Tip:</strong> Standard Package is ideal for MD/MS theses. It covers full data cleaning, advanced tests, and results interpretation."; 
             }
             else if(role === 'phd' || role === 'author') { 
                 cardId = 'card-premium'; 
-                rec.innerHTML = "🏆 <strong>Our Recommendation:</strong> <strong>Premium Support</strong> is essential for PhD and International Journal standards, offering deep study design consultation."; 
+                rec.innerHTML = "🏆 <strong>Expert Tip:</strong> PhD/Journal support ensures your methodology meets global peer-review standards and complex modeling needs."; 
             }
             else { 
                 cardId = 'card-basic'; 
-                rec.innerHTML = "✅ <strong>Our Recommendation:</strong> <strong>Basic Analysis</strong> is perfect for quick pilot studies or smaller departmental projects."; 
+                rec.innerHTML = "✅ <strong>Expert Tip:</strong> Basic is perfect for small department projects or simple pilot studies requiring essential descriptive stats."; 
             }
 
             const card = document.getElementById(cardId);
-            card.classList.add('highlight-card');
-            document.querySelectorAll('.service-card').forEach(c => { if(c.id !== cardId) c.classList.add('opacity-30'); });
+            card.classList.add('active-package');
+            document.querySelectorAll('.service-card').forEach(c => { if(c.id !== cardId) c.classList.add('opacity-40'); });
+            
+            // Smooth scroll to selection on mobile
+            if(window.innerWidth < 640) {
+                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
         }
 
         // Comparison Chart
@@ -347,24 +354,29 @@
             data: {
                 labels: ['Data Clean', 'Advanced Tests', 'Logic Help', 'Revision', 'Publication'],
                 datasets: [
-                    { label: 'Basic', data: [100, 50, 20, 10, 0], backgroundColor: '#10b981' },
-                    { label: 'Standard', data: [100, 95, 80, 70, 40], backgroundColor: '#3b82f6' },
-                    { label: 'Premium', data: [100, 100, 100, 100, 100], backgroundColor: '#f43f5e' }
+                    { label: 'Basic', data: [90, 40, 20, 10, 0], backgroundColor: '#10b981', borderRadius: 8 },
+                    { label: 'Standard', data: [100, 95, 80, 70, 40], backgroundColor: '#2563eb', borderRadius: 8 },
+                    { label: 'Premium', data: [100, 100, 100, 100, 100], backgroundColor: '#f43f5e', borderRadius: 8 }
                 ]
             },
             options: { 
                 responsive: true, 
                 maintainAspectRatio: false,
-                plugins: { legend: { position: 'bottom', labels: { font: { weight: 'bold', size: 10 } } } }
+                plugins: { legend: { position: 'bottom', labels: { font: { weight: 'bold', size: 10 } } } },
+                scales: {
+                    y: { beginAtZero: true, max: 100, grid: { display: false } },
+                    x: { grid: { display: false } }
+                }
             }
         });
 
         // Calculator logic
         const calc = () => {
-            let total = parseInt(document.getElementById('base').value);
-            document.querySelectorAll('.addon:checked').forEach(a => total += parseInt(a.value));
+            let baseVal = parseInt(document.getElementById('base').value);
+            let addonSum = 0;
+            document.querySelectorAll('.addon:checked').forEach(a => addonSum += parseInt(a.value));
             const speed = parseFloat(document.querySelector('input[name="speed"]:checked').value);
-            total = Math.round(total * speed);
+            let total = Math.round((baseVal + addonSum) * speed);
             
             const fmt = (v) => "₹" + v.toLocaleString('en-IN');
             document.getElementById('total').innerText = fmt(total);
